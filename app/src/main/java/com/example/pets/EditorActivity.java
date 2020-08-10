@@ -136,8 +136,14 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         String nameString = mNameEditText.getText().toString().trim();
         String breedString = mBreedEditText.getText().toString().trim();
         String weightString = mWeightEditText.getText().toString().trim();
-        int weight = Integer.parseInt(weightString);
-
+        int weight = 0;
+        if (mCurrentPetUri == null || TextUtils.isEmpty(nameString) || TextUtils.isEmpty(breedString)
+                || TextUtils.isEmpty(weightString) || mGender == PetEntry.GENDER_UNKNOWN) {
+            return;
+        }
+        if (!TextUtils.isEmpty(weightString)) {
+            weight = Integer.parseInt(weightString);
+        }
 
         // Create a ContentValues object where column names are the keys,
         // and pet attributes from the editor are the values.
@@ -173,7 +179,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             // Show a toast message depending on whether or not the update was successful.
             if (rowsAffected == 0) {
                 // If no rows were affected, then there was an error with the update.
-                Toast.makeText(this,"Update Failed!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Update Failed!", Toast.LENGTH_SHORT).show();
             } else {
                 // Otherwise, the update was successful and we can display a toast.
                 Toast.makeText(this, "Updated",
@@ -181,6 +187,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             }
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu options from the res/menu/menu_editor.xml file.

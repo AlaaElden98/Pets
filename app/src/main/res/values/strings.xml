@@ -48,4 +48,6 @@
     <string name="gender_female">Female</string>
     <string name="editor_insert_pet_failed">Insertion Failed</string>
     <string name="editor_insert_pet_successful">Saved!</string>
+    <string name="get_started_by_adding_a_pet">Get started by adding a pet</string>
+    <string name="it_s_a_bit_lonely_here">It\'s a bit lonely here...</string>
 </resources>
